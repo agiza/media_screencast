@@ -1,3 +1,7 @@
+/*
+ * This is based on aaron's patch here: http://drupal.org/node/1439270
+ * with minor changes by katiebot
+ */
 
 Media: Screencast
 

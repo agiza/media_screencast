@@ -57,7 +57,6 @@ class MediaInternetScreencastHandler extends MediaInternetBaseHandler {
       // Now we need the t value.
       $domxpath = new DOMXPath($doc);
       $data = $domxpath->query("//input[@id='url']")->item(0)->getAttribute('value');
-      //$data = 'http://www.screencast.com/t/mZ0X3F2rHY';
 
       $pattern = '@http://www.screencast.com/t/([^/]+)@i';
       if (preg_match($pattern, $data, $matches)) {

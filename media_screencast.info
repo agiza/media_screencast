@@ -1,0 +1,11 @@
+name = Media: Screencast
+description = Media provider file for Screencast.com
+core = 7.x
+files[] = media_screencast.module
+files[] = includes/MediaInternetScreencastHandler.inc
+files[] = includes/MediaScreencastStreamWrapper.inc
+files[] = includes/media_screencast.formatters.inc
+files[] = includes/media_screencast.variables.inc
+dependencies[] = media
+dependencies[] = media_internet
+package = Media

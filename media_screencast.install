@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Media: Screencast module.
+ */
+
+/**
+ * Implement hook_install().
+ */
+function media_screencast_install() {
+  return array();
+}
+
+/**
+ * Implement hook_uninstall().
+ */
+function media_screencast_uninstall() {
+  drupal_load('module', 'media_screencast');
+
+  foreach (media_screencast_variable_default() as $variable => $value) {
+    media_screencast_variable_del($variable);
+  }
+  return array(array('success' => TRUE, 'query' => "Deleted all variables in the Media: Screencast namespace."));
+}

@@ -53,15 +53,7 @@ class MediaInternetScreencastHandler extends MediaInternetBaseHandler {
     $pattern = '@content=http://content\.screencast\.com/users/([^/]+)/folders/([^/]+)/media/([^/]+)/([^&]+)&@i';
     if (preg_match($pattern, $data, $matches)) {
       $uri = 'screencast://users/' . $matches[1] . '/folders/' . $matches[2] . '/media/' . $matches[3] . '/filename/' . $matches[4];
-
-      // Now we need the t value.
-      $domxpath = new DOMXPath($doc);
-      $data = $domxpath->query("//input[@id='url']")->item(0)->getAttribute('value');
-
-      $pattern = '@http://www.screencast.com/t/([^/]+)@i';
-      if (preg_match($pattern, $data, $matches)) {
-        return $uri . '/t/' . $matches[1];
-      }
+      return $uri;
     }
   }
 }

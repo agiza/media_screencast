@@ -20,9 +20,7 @@ class MediaScreencastStreamWrapper extends MediaReadOnlyStreamWrapper {
   }
 
   static function getMimeType($uri, $mapping = NULL) {
-    if (preg_match('@filename/([^/]+)/t/@i', $uri, $matches)) {
-      return file_get_mimetype($matches[1]);
-    }
+    return 'video/screencast';
   }
 
   function getOriginalThumbnailPath() {

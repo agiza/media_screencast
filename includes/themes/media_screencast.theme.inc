@@ -32,9 +32,15 @@ function media_screencast_preprocess_media_screencast_video(&$variables) {
   $variables['url_parts'] = 'users/' . $variables['users'] . '/folders/' . $variables['folders'] . '/media/' . $variables['media'];
   $variables['url_content'] = 'http://content.screencast.com/' . $variables['url_parts'];
 
+  if ( strpos($parts['filename'], '.swf') !== false ) {
+    $player = 'bootstrap.swf';
+  }
+  else {
+    $player = 'mp4h264player.swf';
+  }
   $variables['output'] = <<<OUTPUT
-    <object width="{$variables['width']}" height="{$variables['height']}" type="application/x-shockwave-flash" data="{$variables['url_content']}/mp4h264player.swf">
-      <param name="movie" value="{$variables['url_content']}/mp4h264player.swf"></param>
+    <object width="{$variables['width']}" height="{$variables['height']}" type="application/x-shockwave-flash" data="{$variables['url_content']}/{$player}">
+      <param name="movie" value="{$variables['url_content']}/{$player}"></param>
       <param name="quality" value="{$variables['quality']}" />
       <param name="bgcolor" value="{$variables['bgcolor']}" />
       <param name="flashVars" value="thumb={$variables['url_content']}/FirstFrame.jpg&containerwidth={$variables['width']}&containerheight={$variables['height']}&content={$variables['url_content']}/{$variables['filename']}&blurover={$variables['blurover']}" />

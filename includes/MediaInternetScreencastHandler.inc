@@ -44,10 +44,13 @@ class MediaInternetScreencastHandler extends MediaInternetBaseHandler {
 
     // Get the document player object.
     $scPlayer = $doc->getElementById('scPlayer');
-    if (!isset($scPlayer)) {
-      return;
+    if (isset($scPlayer)) { // Works for SWFs
+      $data = $scPlayer->getElementsByTagName('param')->item(3)->getAttribute('value');
     }
-    $data = $scPlayer->getElementsByTagName('param')->item(3)->getAttribute('value');
+    else { // Works for MP4s
+      $domxpath = new DOMXPath($doc);
+      $data = $domxpath->query("//meta[@property='og:video']")->item(0)->getAttribute('content');
+    }
 
     // Extract the parts for the uri.
     $pattern = '@content=http://content\.screencast\.com/users/([^/]+)/folders/([^/]+)/media/([^/]+)/([^&]+)&@i';
